@@ -93,22 +93,22 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md bg-gradient-to-b from-[#efece6] to-[#ffffff] p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(44,74,62,0.1)] border border-[#e5e3df]">
               {/* Doctor Avatar Presentation */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#e2e4dc] shadow-inner mb-6 flex items-center justify-center border border-[#e5e3df]">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#e2e4dc] shadow-md mb-4 flex items-center justify-center border border-[#e5e3df]">
                 <DoctorImage
                   alt="Dr. Roopali Garg Mangla - Homeopathic Physician"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                   loading="eager"
                 />
-                
-                {/* Floating Experience Badge */}
-                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-md border border-[#e5e3df] flex items-center justify-between pointer-events-none z-10">
-                  <div>
-                    <p className="font-serif text-sm font-bold text-[#2c4a3e]">Dr. Roopali Garg Mangla</p>
-                    <p className="text-[11px] font-sans text-[#4a4b46]">BHMS • 10+ Years Experience</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-[#d4dfd9] flex items-center justify-center text-[#2c4a3e]">
-                    <Award className="w-4 h-4" />
-                  </div>
+              </div>
+
+              {/* Doctor Credentials & Experience Bar */}
+              <div className="bg-white/95 px-4 py-3 rounded-xl shadow-xs border border-[#e5e3df] flex items-center justify-between mb-5">
+                <div>
+                  <p className="font-serif text-sm font-bold text-[#2c4a3e]">Dr. Roopali Garg Mangla</p>
+                  <p className="text-[11px] font-sans text-[#4a4b46]">BHMS • 10+ Years Clinical Experience</p>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-[#d4dfd9] flex items-center justify-center text-[#2c4a3e]">
+                  <Award className="w-4 h-4" />
                 </div>
               </div>
 

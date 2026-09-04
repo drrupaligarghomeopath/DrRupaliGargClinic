@@ -18,10 +18,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           {/* Doctor Image & Badges */}
           <div className="lg:col-span-5">
             <div className="bg-[#efece6] p-6 sm:p-8 rounded-3xl border border-[#e5e3df] shadow-lg">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white mb-6 border border-[#e5e3df]">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-white mb-6 border border-[#e5e3df] shadow-md">
                 <DoctorImage
                   alt="Dr. Roopali Garg Mangla - Classical Homeopath"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                   loading="eager"
                 />
               </div>
