@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RoutePath } from '../types';
 import { CLINIC_INFO, getWhatsAppUrl } from '../data/clinicData';
-import { Phone, Calendar, Menu, X, MessageSquare, Clock } from 'lucide-react';
+import { Phone, Calendar, Menu, X, MessageSquare, Clock, Facebook, Instagram } from 'lucide-react';
 
 interface HeaderProps {
   currentRoute: RoutePath;
@@ -91,7 +91,31 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate }) => {
           </nav>
 
           {/* Right CTAs */}
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-2.5 md:gap-3">
+            {/* Facebook Link */}
+            <a
+              href={CLINIC_INFO.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center justify-center w-9 h-9 rounded-full text-[#1877F2] bg-[#1877F2]/10 hover:bg-[#1877F2] hover:text-white transition-all border border-[#1877F2]/20"
+              aria-label="Facebook Page - Dr. Roopali Mangla"
+              title="Facebook: Dr. Roopali Mangla"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+
+            {/* Instagram Link */}
+            <a
+              href={CLINIC_INFO.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center justify-center w-9 h-9 rounded-full text-[#E1306C] bg-[#E1306C]/10 hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#C13584] hover:text-white transition-all border border-[#E1306C]/20"
+              aria-label="Instagram Profile - Dr. Roopali Garg"
+              title="Instagram: @drroopaligarg"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+
             {/* Direct Phone link */}
             <a
               href={CLINIC_INFO.phoneTel}
@@ -192,6 +216,27 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate }) => {
                 <Phone className="w-4 h-4 text-[#2c4a3e]" />
                 Call {CLINIC_INFO.phoneDisplay}
               </a>
+
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href={CLINIC_INFO.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 border border-[#1877F2]/30 text-[#1877F2] hover:bg-[#1877F2] hover:text-white py-2.5 rounded-xl font-semibold text-xs transition-colors"
+                >
+                  <Facebook className="w-3.5 h-3.5" />
+                  Facebook
+                </a>
+                <a
+                  href={CLINIC_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 border border-[#E1306C]/30 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#C13584] hover:text-white py-2.5 rounded-xl font-semibold text-xs transition-colors"
+                >
+                  <Instagram className="w-3.5 h-3.5" />
+                  Instagram
+                </a>
+              </div>
 
               <div className="mt-2 text-[11px] text-[#787972] text-center flex items-center justify-center gap-1">
                 <Clock className="w-3 h-3" />

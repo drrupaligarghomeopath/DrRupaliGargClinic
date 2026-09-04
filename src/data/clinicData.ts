@@ -24,7 +24,9 @@ export const CLINIC_INFO = {
     saturday: 'Saturday: 10:00 AM - 2:00 PM',
     sunday: 'Sunday: Prior Appointment / Closed'
   },
-  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rise+Shoplex+Tech+Zone+IV+Sector+1+Greater+Noida+Uttar+Pradesh+201318'
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rise+Shoplex+Tech+Zone+IV+Sector+1+Greater+Noida+Uttar+Pradesh+201318',
+  facebookUrl: 'https://www.facebook.com/Dr.RoopaliMangla',
+  instagramUrl: 'https://www.instagram.com/drroopaligarg/'
 };
 
 export function getWhatsAppUrl(customMessage?: string): string {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RoutePath } from '../types';
 import { CLINIC_INFO } from '../data/clinicData';
-import { MapPin, Phone, Mail, Send, CheckCircle2, Globe, Share2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle2, Globe, Share2, Facebook, Instagram } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (route: RoutePath) => void;
@@ -46,6 +46,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Integrating clinical excellence with the timeless wisdom of classical homeopathy for balanced, lasting physical and emotional health.
             </p>
             <div className="flex items-center gap-3">
+              <a
+                href={CLINIC_INFO.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-[#2c4a3e]/20 flex items-center justify-center hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all text-[#2c4a3e]"
+                aria-label="Visit Dr. Roopali's Facebook Page"
+                title="Facebook Page - Dr. Roopali Mangla"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href={CLINIC_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-[#2c4a3e]/20 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#C13584] hover:text-white hover:border-transparent transition-all text-[#2c4a3e]"
+                aria-label="Visit Dr. Roopali's Instagram Profile"
+                title="Instagram: @drroopaligarg"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
               <button
                 onClick={() => handleNav('about')}
                 className="w-9 h-9 rounded-full border border-[#2c4a3e]/20 flex items-center justify-center hover:bg-[#2c4a3e] hover:text-white transition-all text-[#2c4a3e]"
@@ -157,6 +177,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-[#2c4a3e] transition-colors break-all"
                 >
                   {CLINIC_INFO.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Facebook className="w-4 h-4 text-[#1877F2] shrink-0" />
+                <a
+                  href={CLINIC_INFO.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#1877F2] transition-colors"
+                >
+                  facebook.com/Dr.RoopaliMangla
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Instagram className="w-4 h-4 text-[#E1306C] shrink-0" />
+                <a
+                  href={CLINIC_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#E1306C] transition-colors"
+                >
+                  instagram.com/drroopaligarg
                 </a>
               </div>
             </div>

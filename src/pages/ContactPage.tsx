@@ -3,7 +3,7 @@ import { CLINIC_INFO, getWhatsAppUrl, SERVICES_LIST } from '../data/clinicData';
 import { ContactFormData } from '../types';
 import { submitContactInquiry } from '../services/appointmentService';
 import { MapSection } from '../components/MapSection';
-import { MapPin, Clock, Phone, Mail, Send, CheckCircle2, MessageSquare, AlertCircle } from 'lucide-react';
+import { MapPin, Clock, Phone, Mail, Send, CheckCircle2, MessageSquare, AlertCircle, Facebook, Instagram } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -126,6 +126,28 @@ export const ContactPage: React.FC = () => {
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>WhatsApp</span>
+              </a>
+
+              <a
+                href={CLINIC_INFO.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-[#1877F2]/30 bg-white text-[#1877F2] hover:bg-[#1877F2] hover:text-white px-6 py-4 rounded-full font-sans text-xs font-bold tracking-wider transition-all shadow-xs group"
+                title="Follow Dr. Roopali Garg Mangla on Facebook"
+              >
+                <Facebook className="w-4 h-4 text-[#1877F2] group-hover:text-white transition-colors" />
+                <span>Facebook</span>
+              </a>
+
+              <a
+                href={CLINIC_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-[#E1306C]/30 bg-white text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#F56040] hover:to-[#C13584] hover:text-white px-6 py-4 rounded-full font-sans text-xs font-bold tracking-wider transition-all shadow-xs group"
+                title="Follow Dr. Roopali Garg on Instagram"
+              >
+                <Instagram className="w-4 h-4 text-[#E1306C] group-hover:text-white transition-colors" />
+                <span>Instagram</span>
               </a>
             </div>
           </div>
