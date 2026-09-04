@@ -10,6 +10,7 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
+  const [copiedLink, setCopiedLink] = useState(false);
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,25 +54,33 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               >
                 <Globe className="w-4 h-4" />
               </button>
-              <button
-                onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: 'Dr. Roopali Garg Mangla - Homeopathy & MPESS Wellness',
-                      text: 'Consult Dr. Roopali Garg Mangla (BHMS) for holistic homeopathy in Greater Noida.',
-                      url: window.location.href,
-                    }).catch(() => null);
-                  } else {
-                    navigator.clipboard.writeText(window.location.href);
-                    alert('Clinic website link copied to clipboard!');
-                  }
-                }}
-                className="w-9 h-9 rounded-full border border-[#2c4a3e]/20 flex items-center justify-center hover:bg-[#2c4a3e] hover:text-white transition-all text-[#2c4a3e]"
-                aria-label="Share Website"
-                title="Share Website"
-              >
-                <Share2 className="w-4 h-4" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    if (navigator.share) {
+                      navigator.share({
+                        title: 'Dr. Roopali Garg Mangla - Homeopathy & MPESS Wellness',
+                        text: 'Consult Dr. Roopali Garg Mangla (BHMS) for holistic homeopathy in Greater Noida.',
+                        url: window.location.href,
+                      }).catch(() => null);
+                    } else if (navigator.clipboard) {
+                      navigator.clipboard.writeText(window.location.href).catch(() => null);
+                      setCopiedLink(true);
+                      setTimeout(() => setCopiedLink(false), 3000);
+                    }
+                  }}
+                  className="w-9 h-9 rounded-full border border-[#2c4a3e]/20 flex items-center justify-center hover:bg-[#2c4a3e] hover:text-white transition-all text-[#2c4a3e]"
+                  aria-label="Share Website"
+                  title="Share Website"
+                >
+                  <Share2 className="w-4 h-4" />
+                </button>
+                {copiedLink && (
+                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2c4a3e] text-white text-[10px] font-sans px-2 py-0.5 rounded shadow-xs whitespace-nowrap">
+                    Link copied!
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
