@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Camera, Upload, User, Check, RefreshCw } from 'lucide-react';
+import { User, Upload, Image as ImageIcon } from 'lucide-react';
 
 interface DoctorImageProps {
   className?: string;
@@ -9,20 +9,25 @@ interface DoctorImageProps {
 }
 
 const LOCAL_CANDIDATE_SOURCES = [
+  '/Doc Image.jpg',
+  '/Doc%20Image.jpg',
+  '/doc-image.jpg',
+  '/doc_image.jpg',
+  '/doctor.jpg',
+  '/doctor.jpeg',
+  '/doctor.png',
   '/doc-pick.png',
   '/doc%20pick.png',
-  '/doc_pick.png',
-  '/doctor.png'
 ];
 
 export const DoctorImage: React.FC<DoctorImageProps> = ({
   className = 'w-full h-full object-cover object-top',
   alt = 'Dr. Roopali Garg Mangla - Classical Homeopathic Physician',
   loading = 'eager',
-  showUploadButton = true
 }) => {
   const [candidateIndex, setCandidateIndex] = useState<number>(0);
   const [candidateFailed, setCandidateFailed] = useState<boolean>(false);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [customPhoto, setCustomPhoto] = useState<string | null>(() => {
     try {
       return localStorage.getItem('dr_roopali_custom_photo');
@@ -30,8 +35,6 @@ export const DoctorImage: React.FC<DoctorImageProps> = ({
       return null;
     }
   });
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -41,8 +44,6 @@ export const DoctorImage: React.FC<DoctorImageProps> = ({
         const stored = localStorage.getItem('dr_roopali_custom_photo');
         if (stored) {
           setCustomPhoto(stored);
-          setUploadSuccess(true);
-          setTimeout(() => setUploadSuccess(false), 2500);
         }
       } catch {
         // Storage not accessible
@@ -73,12 +74,19 @@ export const DoctorImage: React.FC<DoctorImageProps> = ({
         try {
           localStorage.setItem('dr_roopali_custom_photo', dataUrl);
         } catch (err) {
-          console.warn('LocalStorage limit exceeded, displaying in session memory', err);
+          console.warn('LocalStorage quota, keeping in memory', err);
         }
         setCustomPhoto(dataUrl);
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 2500);
         window.dispatchEvent(new Event('doctor-photo-updated'));
+
+        // Persist to server if available
+        fetch('/api/upload-doctor-photo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ dataUrl }),
+        }).catch(() => {
+          // Fallback to client-side localStorage
+        });
       }
     };
     reader.readAsDataURL(file);
@@ -119,14 +127,13 @@ export const DoctorImage: React.FC<DoctorImageProps> = ({
 
   return (
     <div
-      className={`relative w-full h-full group overflow-hidden transition-all select-none ${
+      className={`relative w-full h-full overflow-hidden select-none transition-all ${
         isDragging ? 'ring-4 ring-[#2c4a3e] bg-[#2c4a3e]/10' : ''
       }`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
     >
-      {/* Hidden native file input */}
       <input
         ref={fileInputRef}
         type="file"
@@ -137,75 +144,50 @@ export const DoctorImage: React.FC<DoctorImageProps> = ({
       />
 
       {hasValidPhoto ? (
-        <>
-          <img
-            src={imageSrc}
-            alt={alt}
-            className={className}
-            loading={loading}
-            referrerPolicy="no-referrer"
-            onError={handleImageError}
-          />
-
-          {/* Quick upload / replace control badge */}
-          {showUploadButton && (
-            <div className="absolute top-3 right-3 z-20">
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="bg-[#1a1c1e]/80 hover:bg-[#2c4a3e] text-white text-[11px] font-sans font-medium px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md flex items-center gap-1.5 transition-all cursor-pointer opacity-90 hover:opacity-100 hover:scale-105 active:scale-95"
-                title="Replace photo with doc pick.png or another image"
-              >
-                {uploadSuccess ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Photo Applied</span>
-                  </>
-                ) : (
-                  <>
-                    <RefreshCw className="w-3 h-3" />
-                    <span>Change Photo</span>
-                  </>
-                )}
-              </button>
-            </div>
-          )}
-        </>
+        /* Render doctor portrait cleanly with no floating "Change Photo" button */
+        <img
+          src={imageSrc}
+          alt={alt}
+          className={className}
+          loading={loading}
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
+        />
       ) : (
-        /* Fallback Prompt Card when local file is not in public folder yet */
+        /* Friendly Presentation Fallback & One-Click Uploader */
         <div
           onClick={() => fileInputRef.current?.click()}
-          className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#f2efe9] to-[#e7e4dc] cursor-pointer hover:bg-[#ece8df] transition-colors border-2 border-dashed border-[#8c7047]/40 rounded-xl"
-          title="Click to select and apply doc pick.png"
+          className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#f2efe9] to-[#e7e4dc] border-2 border-dashed border-[#8c7047]/30 rounded-2xl cursor-pointer hover:border-[#2c4a3e] hover:bg-[#eae6dd] transition-all group"
+          title="Click to select 'Doc Image.jpg'"
         >
-          <div className="w-16 h-16 rounded-full bg-[#2c4a3e] text-white flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform">
-            <Upload className="w-8 h-8 animate-pulse text-[#faf9f6]" />
+          <div className="w-16 h-16 rounded-full bg-[#2c4a3e] text-white flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
+            <User className="w-8 h-8 text-[#faf9f6]" />
           </div>
 
-          <h3 className="font-serif text-base sm:text-lg font-bold text-[#2c4a3e] mb-1">
+          <h3 className="font-serif text-base sm:text-lg font-bold text-[#2c4a3e] mb-0.5">
             Dr. Roopali Garg Mangla
           </h3>
           <p className="text-xs text-[#8c7047] font-semibold mb-3">
             BHMS • Classical Homeopathic Physician
           </p>
 
-          <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-[#e5e3df] text-[#1a1c1e] text-xs font-medium flex items-center gap-1.5">
-            <Camera className="w-4 h-4 text-[#2c4a3e]" />
-            <span>Click to apply attached photo (doc pick.png)</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2c4a3e] text-white text-xs font-semibold shadow-sm group-hover:bg-[#1f352c] transition-colors">
+            <Upload className="w-3.5 h-3.5" />
+            <span>Upload &apos;Doc Image.jpg&apos;</span>
           </div>
 
           <p className="text-[10px] text-[#787972] mt-2">
-            Or drag and drop the image file directly here
+            Click or drag &amp; drop attached image here
           </p>
         </div>
       )}
 
-      {/* Drag overlay state */}
+      {/* Subtle Drag Overlay */}
       {isDragging && (
-        <div className="absolute inset-0 bg-[#2c4a3e]/85 backdrop-blur-sm z-30 flex flex-col items-center justify-center text-white p-4">
-          <Upload className="w-10 h-10 mb-2 animate-bounce" />
-          <p className="font-serif font-bold text-sm">Drop &apos;doc pick.png&apos; here</p>
-          <p className="text-xs text-[#faf9f6]/80 mt-1">Image will be applied as-is without alterations</p>
+        <div className="absolute inset-0 bg-[#2c4a3e]/85 backdrop-blur-xs z-30 flex flex-col items-center justify-center text-white p-4">
+          <ImageIcon className="w-10 h-10 mb-2 animate-bounce" />
+          <p className="font-serif font-bold text-sm">Drop &apos;Doc Image.jpg&apos; here</p>
+          <p className="text-xs text-[#faf9f6]/80 mt-1">Applies instantly to doctor presentation</p>
         </div>
       )}
     </div>
