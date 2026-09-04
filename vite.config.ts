@@ -24,9 +24,31 @@ function doctorImageUploadPlugin(): Plugin {
                     fs.mkdirSync(publicDir, { recursive: true });
                   }
                   fs.writeFileSync(path.join(publicDir, 'doctor.jpg'), buffer);
+                  fs.writeFileSync(path.join(publicDir, 'Rupali Garg.jpg'), buffer);
+                  fs.writeFileSync(path.join(publicDir, 'rupali-garg.jpg'), buffer);
+                  fs.writeFileSync(path.join(publicDir, 'rupali.jpg'), buffer);
                   fs.writeFileSync(path.join(publicDir, 'Doc Image.jpg'), buffer);
                   fs.writeFileSync(path.join(publicDir, 'doc-image.jpg'), buffer);
                   fs.writeFileSync(path.join(publicDir, 'doctor.png'), buffer);
+
+                  const distDir = path.resolve(process.cwd(), 'dist');
+                  if (fs.existsSync(distDir)) {
+                    fs.writeFileSync(path.join(distDir, 'doctor.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'Rupali Garg.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'rupali-garg.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'rupali.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'Doc Image.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'doc-image.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'doctor.png'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'doctor_opt.jpg'), buffer);
+                  }
+
+                  const assetsDir = path.resolve(process.cwd(), 'src/assets');
+                  if (fs.existsSync(assetsDir)) {
+                    fs.writeFileSync(path.join(assetsDir, 'doctor.jpg'), buffer);
+                    const b64Data = 'export const DOCTOR_PHOTO_SRC = ' + JSON.stringify(body.dataUrl) + ';\n';
+                    fs.writeFileSync(path.join(assetsDir, 'doctorPhotoData.ts'), b64Data);
+                  }
                   res.writeHead(200, { 'Content-Type': 'application/json' });
                   res.end(JSON.stringify({ success: true }));
                   return;
