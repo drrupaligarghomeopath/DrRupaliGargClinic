@@ -28,6 +28,10 @@ function doctorPhotoUploadPlugin(): Plugin {
 
                   fs.writeFileSync(path.join(publicDir, 'doctor.jpg'), buffer);
                   fs.writeFileSync(path.join(assetsDir, 'doctor.jpg'), buffer);
+                  fs.writeFileSync(
+                    path.join(assetsDir, 'doctorPhotoData.ts'),
+                    `export const DOCTOR_NEW_PHOTO_BASE64 = ${JSON.stringify(body.dataUrl)};\n`
+                  );
                   if (fs.existsSync(distDir)) {
                     fs.writeFileSync(path.join(distDir, 'doctor.jpg'), buffer);
                   }
