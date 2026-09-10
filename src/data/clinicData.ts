@@ -9,6 +9,8 @@ export const CLINIC_INFO = {
   phoneClean: '+919990365635',
   phoneTel: 'tel:+919990365635',
   email: 'drrupaligarghomeopath@gmail.com',
+  doctorImage: '/Doctor RUPALI.jpg',
+  doctorImageFallback: '/doctor.jpg',
   address: {
     shop: 'Shop No 32, 1st Floor, Rise Shoplex',
     area: 'Tech Zone IV, Sector 1, Bisrakh Jalalpur',

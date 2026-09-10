@@ -27,6 +27,8 @@ function doctorPhotoUploadPlugin(): Plugin {
                   if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir, { recursive: true });
 
                   fs.writeFileSync(path.join(publicDir, 'doctor.jpg'), buffer);
+                  fs.writeFileSync(path.join(publicDir, 'Doctor RUPALI.jpg'), buffer);
+                  fs.writeFileSync(path.join(publicDir, 'doctor-rupali.jpg'), buffer);
                   fs.writeFileSync(path.join(assetsDir, 'doctor.jpg'), buffer);
                   fs.writeFileSync(
                     path.join(assetsDir, 'doctorPhotoData.ts'),
@@ -34,6 +36,7 @@ function doctorPhotoUploadPlugin(): Plugin {
                   );
                   if (fs.existsSync(distDir)) {
                     fs.writeFileSync(path.join(distDir, 'doctor.jpg'), buffer);
+                    fs.writeFileSync(path.join(distDir, 'Doctor RUPALI.jpg'), buffer);
                   }
 
                   res.writeHead(200, { 'Content-Type': 'application/json' });
