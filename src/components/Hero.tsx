@@ -92,13 +92,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           {/* Right Column - Doctor Visual Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md bg-gradient-to-b from-[#efece6] to-[#ffffff] p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(44,74,62,0.1)] border border-[#e5e3df]">
-              {/* Doctor Avatar Presentation */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#e2e4dc] shadow-md mb-4 flex items-center justify-center border border-[#e5e3df]">
-                <DoctorImage
-                  alt="Dr. Roopali Garg Mangla - Homeopathic Physician"
-                  className="w-full h-full object-cover object-center"
-                  loading="eager"
-                />
+              {/* Doctor Practice & Clinic Seal Visual */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md mb-5">
+                <DoctorImage />
               </div>
 
               {/* Doctor Credentials & Experience Bar */}

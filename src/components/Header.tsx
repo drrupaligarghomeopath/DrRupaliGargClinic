@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RoutePath } from '../types';
 import { CLINIC_INFO, getWhatsAppUrl } from '../data/clinicData';
-import { Phone, Calendar, Menu, X, MessageSquare, Clock, Facebook, Instagram } from 'lucide-react';
+import { Phone, Calendar, Menu, X, MessageSquare, Clock, Facebook, Instagram, QrCode } from 'lucide-react';
 
 interface HeaderProps {
   currentRoute: RoutePath;
@@ -114,6 +114,18 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate }) => {
               title="Instagram: @drroopaligarg"
             >
               <Instagram className="w-4 h-4" />
+            </a>
+
+            {/* Google Business Profile & QR Code */}
+            <a
+              href={CLINIC_INFO.googleBusinessUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center justify-center w-9 h-9 rounded-full text-[#4285F4] bg-[#4285F4]/10 hover:bg-[#4285F4] hover:text-white transition-all border border-[#4285F4]/20"
+              aria-label="Google Business Profile & QR Code - Dr. Roopali Garg Mangla"
+              title="Google Business Profile & QR Code"
+            >
+              <QrCode className="w-4 h-4" />
             </a>
 
             {/* Direct Phone link */}
@@ -237,6 +249,16 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate }) => {
                   Instagram
                 </a>
               </div>
+
+              <a
+                href={CLINIC_INFO.googleBusinessUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 border border-[#4285F4]/30 text-[#4285F4] hover:bg-[#4285F4] hover:text-white py-2.5 rounded-xl font-semibold text-xs transition-colors"
+              >
+                <QrCode className="w-3.5 h-3.5" />
+                <span>Check us out on Google</span>
+              </a>
 
               <div className="mt-2 text-[11px] text-[#787972] text-center flex items-center justify-center gap-1">
                 <Clock className="w-3 h-3" />

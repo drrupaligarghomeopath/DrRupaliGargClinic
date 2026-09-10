@@ -3,6 +3,7 @@ import { CLINIC_INFO, getWhatsAppUrl, SERVICES_LIST } from '../data/clinicData';
 import { ContactFormData } from '../types';
 import { submitContactInquiry } from '../services/appointmentService';
 import { MapSection } from '../components/MapSection';
+import { GoogleBusinessQR } from '../components/GoogleBusinessQR';
 import { MapPin, Clock, Phone, Mail, Send, CheckCircle2, MessageSquare, AlertCircle, Facebook, Instagram } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
@@ -73,6 +74,16 @@ export const ContactPage: React.FC = () => {
                   {CLINIC_INFO.address.area}<br />
                   {CLINIC_INFO.address.city}, {CLINIC_INFO.address.pincode}
                 </p>
+                <a
+                  href={CLINIC_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4285F4] hover:underline mt-1 w-fit"
+                  title="Google Map Link: https://share.google/zPsz8CoSSZVMnpyZD"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-[#4285F4]" />
+                  <span>Google Map Link</span>
+                </a>
               </div>
 
               {/* Timings */}
@@ -149,6 +160,22 @@ export const ContactPage: React.FC = () => {
                 <Instagram className="w-4 h-4 text-[#E1306C] group-hover:text-white transition-colors" />
                 <span>Instagram</span>
               </a>
+
+              <a
+                href={CLINIC_INFO.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-[#4285F4]/30 bg-[#f0f7ff] text-[#4285F4] hover:bg-[#4285F4] hover:text-white px-6 py-4 rounded-full font-sans text-xs font-bold tracking-wider transition-all shadow-xs group"
+                title="Google Map Link - Dr. Roopali Garg Mangla"
+              >
+                <MapPin className="w-4 h-4 text-[#4285F4] group-hover:text-white transition-colors" />
+                <span>Google Maps</span>
+              </a>
+            </div>
+
+            {/* Google Business Profile QR Card */}
+            <div className="mt-8">
+              <GoogleBusinessQR variant="compact" />
             </div>
           </div>
 

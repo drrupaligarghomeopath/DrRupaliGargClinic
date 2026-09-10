@@ -9,8 +9,6 @@ export const CLINIC_INFO = {
   phoneClean: '+919990365635',
   phoneTel: 'tel:+919990365635',
   email: 'drrupaligarghomeopath@gmail.com',
-  doctorImage: '/doc-pick.png',
-  doctorImageFallback: '/doctor.png',
   address: {
     shop: 'Shop No 32, 1st Floor, Rise Shoplex',
     area: 'Tech Zone IV, Sector 1, Bisrakh Jalalpur',
@@ -24,7 +22,12 @@ export const CLINIC_INFO = {
     saturday: 'Saturday: 10:00 AM - 2:00 PM',
     sunday: 'Sunday: Prior Appointment / Closed'
   },
-  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rise+Shoplex+Tech+Zone+IV+Sector+1+Greater+Noida+Uttar+Pradesh+201318',
+  googleMapsUrl: 'https://share.google/zPsz8CoSSZVMnpyZD',
+  googleBusinessName: 'Dr Roopali Garg Mangla',
+  googleBusinessUrl: 'https://share.google/zPsz8CoSSZVMnpyZD',
+  googleQrSvgPath: '/google-business-qr.svg',
+  googleQrPosterPath: '/google-business-poster.svg',
+  googleQrPngPath: '/google-business-qr.png',
   facebookUrl: 'https://www.facebook.com/Dr.RoopaliMangla',
   instagramUrl: 'https://www.instagram.com/drroopaligarg/'
 };

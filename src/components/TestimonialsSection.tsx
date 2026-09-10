@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TESTIMONIALS_LIST, CLINIC_INFO } from '../data/clinicData';
 import { RoutePath } from '../types';
 import { Star, Quote, CheckCircle2, Heart, Calendar } from 'lucide-react';
+import { GoogleBusinessQR } from './GoogleBusinessQR';
 
 interface TestimonialsSectionProps {
   onNavigate?: (route: RoutePath) => void;
@@ -68,6 +69,11 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onNavi
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Google Business Profile & QR Code Banner */}
+        <div className="mt-12">
+          <GoogleBusinessQR variant="banner" />
         </div>
 
         {/* CTA Card */}

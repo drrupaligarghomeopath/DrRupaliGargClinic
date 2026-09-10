@@ -15,15 +15,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16 md:mb-24">
-          {/* Doctor Image & Badges */}
+          {/* Physician Clinic Emblem & Credentials */}
           <div className="lg:col-span-5">
             <div className="bg-[#efece6] p-6 sm:p-8 rounded-3xl border border-[#e5e3df] shadow-lg">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white mb-6 border border-[#e5e3df] shadow-md">
-                <DoctorImage
-                  alt="Dr. Roopali Garg Mangla - Classical Homeopath"
-                  className="w-full h-full object-cover object-center"
-                  loading="eager"
-                />
+              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-md">
+                <DoctorImage />
               </div>
 
               <div className="space-y-2 text-center">

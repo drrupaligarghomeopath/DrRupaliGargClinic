@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { RoutePath } from '../types';
 import { CLINIC_INFO } from '../data/clinicData';
 import { MapPin, Phone, Mail, Send, CheckCircle2, Globe, Share2, Facebook, Instagram } from 'lucide-react';
+import { GoogleBusinessQR } from './GoogleBusinessQR';
 
 interface FooterProps {
   onNavigate: (route: RoutePath) => void;
@@ -101,6 +102,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   </span>
                 )}
               </div>
+            </div>
+
+            {/* Google Business QR Callout */}
+            <div className="mt-6">
+              <GoogleBusinessQR variant="compact" />
             </div>
           </div>
 
