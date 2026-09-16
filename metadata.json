@@ -1,0 +1,8 @@
+{
+  "name": "Remix Dr. Roopali Garg Mangla - Holistic Homeopathy \u0026 MPESS Wellness",
+  "description": "Official healthcare and clinic website for Dr. Roopali Garg Mangla (BHMS), providing holistic homeopathy, MPESS wellness consultations, and appointment booking in Greater Noida.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
