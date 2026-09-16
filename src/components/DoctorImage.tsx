@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { CLINIC_INFO } from '../data/clinicData';
-import { DOCTOR_NEW_PHOTO_BASE64 } from '../assets/doctorPhotoData';
+import doctorPhoto from '../assets/doctor.jpg';
 
 interface DoctorImageProps {
   className?: string;
@@ -11,10 +11,10 @@ interface DoctorImageProps {
 
 /**
  * Permanently frozen photograph of Dr. Roopali Garg Mangla.
- * Directly bundled as a high-fidelity image asset to eliminate runtime changing,
- * localStorage discrepancies, and 404/network errors when shared or hosted on GitHub.
+ * Directly bundled as a standard image asset to eliminate runtime changing,
+ * localStorage discrepancies, and diff/patch errors on GitHub.
  */
-export const FROZEN_DOCTOR_IMAGE = DOCTOR_NEW_PHOTO_BASE64;
+export const FROZEN_DOCTOR_IMAGE = doctorPhoto;
 
 export const DoctorImage: React.FC<DoctorImageProps> = ({
   className = 'w-full h-full',
